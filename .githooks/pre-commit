@@ -1,0 +1,31 @@
+#!/bin/sh
+# Rejects staged AI-agent files, secret files and lines that look like keys.
+
+fail=0
+
+forbidden_paths='(^|/)(CLAUDE\.md|CLAUDE\.local\.md|AGENTS\.md|GEMINI\.md|\.cursorrules|\.windsurfrules|\.mcp\.json)$|(^|/)\.(claude|cursor|codex)/|(^|/)\.aider|(^|/)\.github/copilot-instructions\.md$|(^|/)\.env|\.(pem|key|p12|jks|keystore)$'
+
+staged=$(git diff --cached --name-only --diff-filter=ACMR)
+
+bad_files=$(printf '%s\n' "$staged" | grep -E "$forbidden_paths" | grep -vE '(^|/)\.env\.example$')
+if [ -n "$bad_files" ]; then
+    echo "pre-commit: AI-agent or secret files are staged:" >&2
+    printf '  %s\n' $bad_files >&2
+    fail=1
+fi
+
+secret_pattern='PRIVATE KEY|ghp_[A-Za-z0-9]{20,}|github_pat_[A-Za-z0-9_]{20,}|sk-[A-Za-z0-9_-]{16,}|AKIA[0-9A-Z]{16}|(password|passwd|secret|token)[[:space:]]*[:=][[:space:]]*["'"'"']?[^[:space:]"'"'"']{4,}'
+
+secret_hits=$(git diff --cached -U0 --diff-filter=ACMR -- . ':(exclude).githooks/*' \
+    | grep -E '^\+[^+]' | grep -iE "$secret_pattern")
+if [ -n "$secret_hits" ]; then
+    echo "pre-commit: staged lines look like secrets:" >&2
+    printf '%s\n' "$secret_hits" | cut -c1-120 >&2
+    fail=1
+fi
+
+if [ "$fail" -ne 0 ]; then
+    echo "Commit rejected. Unstage the files or remove the secrets." >&2
+    exit 1
+fi
+exit 0

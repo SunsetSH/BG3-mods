@@ -1,0 +1,47 @@
+# AI agent instructions and settings: never committed
+CLAUDE.md
+CLAUDE.local.md
+AGENTS.md
+GEMINI.md
+.claude/
+.cursor/
+.cursorrules
+.codex/
+.windsurfrules
+.github/copilot-instructions.md
+.mcp.json
+.aider*
+
+# Secrets
+.env*
+!.env.example
+*.pem
+*.key
+*.p12
+*.jks
+*.keystore
+
+# Python
+.venv/
+__pycache__/
+*.py[cod]
+.mypy_cache/
+.pytest_cache/
+.ruff_cache/
+
+# Downloaded tools, extracted game data, build output
+tools/
+unpacked/
+build/
+dist/
+*.pak
+
+# OS / editors
+Thumbs.db
+desktop.ini
+.DS_Store
+.vscode/
+.idea/
+
+# DC Check localization holds Larian's dialogue text: built by scripts/dc_check_generate.py, not committed
+mods/dc_check/pak/Mods/*/Localization/

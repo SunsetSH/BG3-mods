@@ -1,0 +1,17 @@
+#!/bin/sh
+# Rejects AI attribution in commit messages.
+
+msg_file="$1"
+body=$(grep -v '^#' "$msg_file")
+
+if printf '%s\n' "$body" | grep -iqE '^[[:space:]]*co-authored-by:.*(claude|anthropic|openai|chatgpt|gpt|copilot|gemini|cursor|codex|aider|windsurf|devin|noreply@anthropic)'; then
+    echo "commit-msg: Co-Authored-By with an AI name is not allowed." >&2
+    exit 1
+fi
+
+if printf '%s\n' "$body" | grep -iqE 'generated (with|by) .*(claude|ai|copilot|gpt|cursor)|claude\.com/claude-code|claude\.ai/code'; then
+    echo "commit-msg: 'Generated with ...' AI lines are not allowed." >&2
+    exit 1
+fi
+
+exit 0

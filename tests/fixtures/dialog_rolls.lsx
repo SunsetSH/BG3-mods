@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<save>
+	<version major="4" minor="0" revision="9" build="331" lslib_meta="v1,bswap_guids,lsf_keys_adjacency" />
+	<region id="dialog">
+		<node id="dialog">
+			<children>
+				<node id="nodes">
+					<children>
+						<node id="node" key="UUID">
+							<attribute id="constructor" type="FixedString" value="ActiveRoll" />
+							<attribute id="UUID" type="FixedString" value="roll-with-dc" />
+							<attribute id="RollType" type="string" value="SkillCheck" />
+							<attribute id="Skill" type="string" value="Persuasion" />
+							<attribute id="Advantage" type="uint8" value="0" />
+							<attribute id="DifficultyClassID" type="guid" value="fa621d38-6f83-4e42-a55c-6aa651a75d46" />
+							<children>
+								<node id="TaggedTexts">
+									<children>
+										<node id="TaggedText">
+											<children>
+												<node id="TagTexts">
+													<children>
+														<node id="TagText">
+															<attribute id="TagText" type="TranslatedString" handle="h-roll-a" version="2" />
+														</node>
+														<node id="TagText">
+															<attribute id="TagText" type="TranslatedString" handle="h-roll-b" version="1" />
+														</node>
+													</children>
+												</node>
+											</children>
+										</node>
+									</children>
+								</node>
+							</children>
+						</node>
+						<node id="node" key="UUID">
+							<attribute id="constructor" type="FixedString" value="ActiveRoll" />
+							<attribute id="UUID" type="FixedString" value="attack-roll" />
+							<attribute id="RollType" type="string" value="MeleeWeaponAttack" />
+							<attribute id="DifficultyClassID" type="guid" value="00000000-0000-0000-0000-000000000000" />
+							<children>
+								<node id="TaggedTexts">
+									<children>
+										<node id="TaggedText">
+											<children>
+												<node id="TagTexts">
+													<children>
+														<node id="TagText">
+															<attribute id="TagText" type="TranslatedString" handle="h-attack" version="1" />
+														</node>
+													</children>
+												</node>
+											</children>
+										</node>
+									</children>
+								</node>
+							</children>
+						</node>
+						<node id="node" key="UUID">
+							<attribute id="constructor" type="FixedString" value="TagAnswer" />
+							<attribute id="UUID" type="FixedString" value="plain-answer" />
+							<children>
+								<node id="TaggedTexts">
+									<children>
+										<node id="TaggedText">
+											<children>
+												<node id="TagTexts">
+													<children>
+														<node id="TagText">
+															<attribute id="TagText" type="TranslatedString" handle="h-plain" version="1" />
+														</node>
+													</children>
+												</node>
+											</children>
+										</node>
+									</children>
+								</node>
+							</children>
+						</node>
+						<node id="node" key="UUID">
+							<attribute id="constructor" type="FixedString" value="PassiveRoll" />
+							<attribute id="UUID" type="FixedString" value="passive-roll" />
+							<attribute id="DifficultyClassID" type="guid" value="fa621d38-6f83-4e42-a55c-6aa651a75d46" />
+						</node>
+					</children>
+				</node>
+			</children>
+		</node>
+	</region>
+</save>

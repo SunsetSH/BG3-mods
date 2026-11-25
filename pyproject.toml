@@ -1,0 +1,49 @@
+[project]
+name = "bg3-mods"
+version = "1.0.0"
+description = "Build tooling for Baldur's Gate 3 mods: DC Check, Run Speed and the next ones"
+readme = "README.md"
+license = "MIT"
+authors = [{ name = "SunsetSH" }]
+requires-python = ">=3.15"
+dependencies = []
+
+[dependency-groups]
+dev = [
+    "mypy>=2.4.1",
+    "pytest>=9.2.0",
+    "ruff>=0.17.6",
+]
+
+[build-system]
+requires = ["uv_build>=0.13.9,<0.14"]
+build-backend = "uv_build"
+
+[tool.ruff]
+line-length = 100
+target-version = "py315"
+
+[tool.ruff.lint]
+select = ["E", "W", "F", "I", "B", "UP", "SIM", "PTH", "S", "RUF", "N", "C90", "PL"]
+ignore = []
+# "КС" is the Russian game term for DC (Cyrillic on purpose).
+allowed-confusables = ["К", "С"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**" = ["S101", "PLR2004"]
+"scripts/**" = ["S603"]
+
+[tool.ruff.lint.mccabe]
+max-complexity = 10
+
+[tool.ruff.lint.pylint]
+max-statements = 50
+
+[tool.mypy]
+strict = true
+python_version = "3.15"
+files = ["src", "scripts", "tests"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"

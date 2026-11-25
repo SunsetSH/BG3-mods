@@ -1,0 +1,5 @@
+# Нюансы Combat Turn Timer
+
+- В `Gustav.pak` для Patch 8 Hotfix 10, `Mods/Honour/Story/RawFiles/Goals/GLO_CombatNPCs_Honour.txt`, игра использует `TurnStarted` и `EndTurn`. Мод сверяет флаги `IsActiveCombatTurn`, `CanActInCombat` и `RequestedEndTurn` на сервере. [EndTurn](https://docs.baldursgate3.game/index.php?title=EndTurn) · [Combat.h, коммит af85fd2](https://github.com/Norbyte/bg3se/blob/af85fd2/BG3Extender/GameDefinitions/Components/Combat.h)
+- `GetReservedUserID` нужен для отправки состояния живому клиенту. В сохранении лимит индексируется по стабильному `GetUserProfileID`. Отсчёт идёт по монотонному времени сервера, клиент получает остаток в миллисекундах. [GetUserProfileID](https://docs.baldursgate3.game/index.php?title=GetUserProfileID) · [NetChannel.lua, коммит af85fd2](https://github.com/Norbyte/bg3se/blob/af85fd2/BG3Extender/LuaScripts/Libs/NetChannel.lua)
+- Сворачивание через `SetCollapsed` и свойство полосы `Value` сверены с [IMGUI.inl, коммит af85fd2](https://github.com/Norbyte/bg3se/blob/af85fd2/BG3Extender/GameDefinitions/PropertyMaps/IMGUI.inl).

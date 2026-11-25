@@ -1,0 +1,5 @@
+# Нюансы Passive Check Focus
+
+- `RollResult` передаёт признак пассивного броска и результат отдельно. Пример для Patch 8 Hotfix 10: `Gustav.pak` → `Mods/GustavDev/Story/RawFiles/Goals/Act3b_LOW_PhilgravesMansion.txt`, бросок `LOW_PhilgravesMansion_PerceptionStreetDoor`. [RollResult](https://docs.baldursgate3.game/index.php?title=RollResult)
+- Отмена использует бит `RequestCancelMovement` у клиентского `InputController`, только при задаче `MoveTo`. Остальные биты сохраняются оператором `|`. [Input.h](https://github.com/Norbyte/bg3se/blob/af85fd2/BG3Extender/GameDefinitions/Controllers/Input.h) · [Engine.inl](https://github.com/Norbyte/bg3se/blob/af85fd2/BG3Extender/GameDefinitions/Enumerations/Engine.inl), коммит `af85fd2`.
+- Для Patch 8 Hotfix 10 команда `SetCameraOnGameObject` видна в `Game.pak` → `Mods/MainUI/GUI/Pages/PlayerPortraits.xaml`. Lua вызывает её после выбора персонажа, на потоке Noesis через `Ext.UI.Defer`. [MakePlayerActive](https://docs.baldursgate3.game/index.php?title=MakePlayerActive) · [Module.inl, коммит af85fd2](https://github.com/Norbyte/bg3se/blob/af85fd2/BG3Extender/Lua/Libs/ClientUI/Module.inl)
